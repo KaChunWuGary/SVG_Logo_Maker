@@ -4,5 +4,3 @@
     <circle cx="100" cy="100" r="75" fill="green" />
     <text x="100" y="120" font-size="65" text-anchor="middle" fill="white">SVG</text>
 </svg>
-
-

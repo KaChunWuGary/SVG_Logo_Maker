@@ -8,7 +8,7 @@ describe("shape", () => {
             const shape = "Triangle";
             const shapeType = new shapeSelected.Shapes(shape);
             const shapeConstructors = new shapeType("fff","blue","black");
-            expect(index.modifyingTriangles(shapeConstructors)).toEqual('<svg version=\"1.1\"\r\n    width=\"300\" height=\"200\"\r\n    xmlns=\"http://www.w3.org/2000/svg\">\r\n    <polygon points=\"123,10 227.8,190 20,190\" style=\"fill:black\" />\r\n    <text x=\"125\" y=\"150\" font-size=\"60\" text-anchor=\"middle\" fill=\"blue\">fff</text>\r\n</svg>\r\n');
+            expect(index.modifyingTriangles(shapeConstructors)).toEqual('<svg version=\"1.1\"\n    width=\"300\" height=\"200\"\n    xmlns=\"http://www.w3.org/2000/svg\">\n    <polygon points=\"123,10 227.8,190 20,190\" style=\"fill:black\" />\n    <text x=\"125\" y=\"150\" font-size=\"60\" text-anchor=\"middle\" fill=\"blue\">fff</text>\n</svg>\n');
         })
     })
     describe("square",() =>{
@@ -16,7 +16,7 @@ describe("shape", () => {
             const shape = "Square";
             const shapeType = new shapeSelected.Shapes(shape);
             const shapeConstructors = new shapeType("fff","blue","black");
-            expect(JSON.stringify(index.modifyingSquares(shapeConstructors))).toEqual('\"<svg version=\\\"1.1\\\"\\r\\n    width=\\\"300\\\" height=\\\"200\\\"\\r\\n    xmlns=\\\"http://www.w3.org/2000/svg\\\">\\r\\n    <rect width=\\\"100%\\\" height=\\\"100%\\\" fill=\\\"black\\\" />\\r\\n    <text x=\\\"150\\\" y=\\\"140\\\" font-size=\\\"130\\\" text-anchor=\\\"middle\\\" fill=\\\"blue\\\">fff</text>\\r\\n</svg>\\r\\n\"')
+            expect(JSON.stringify(index.modifyingSquares(shapeConstructors))).toEqual('\"<svg version=\\\"1.1\\\"\\n    width=\\\"300\\\" height=\\\"200\\\"\\n    xmlns=\\\"http://www.w3.org/2000/svg\\\">\\n    <rect width=\\\"100%\\\" height=\\\"100%\\\" fill=\\\"black\\\" />\\n    <text x=\\\"150\\\" y=\\\"140\\\" font-size=\\\"130\\\" text-anchor=\\\"middle\\\" fill=\\\"blue\\\">fff</text>\\n</svg>\\n\"')
         ;
         })
     })
@@ -25,7 +25,7 @@ describe("shape", () => {
             const shape = "Circle"
             const shapeType = new shapeSelected.Shapes(shape);
             const shapeConstructors = new shapeType("fff","blue","black");
-            expect(JSON.stringify(index.modifyingCircles(shapeConstructors))).toEqual('\"<svg version=\\\"1.1\\\"\\r\\n    width=\\\"300\\\" height=\\\"200\\\"\\r\\n    xmlns=\\\"http://www.w3.org/2000/svg\\\">\\r\\n    <circle cx=\\\"100\\\" cy=\\\"100\\\" r=\\\"75\\\" fill=\\\"black\\\" />\\r\\n    <text x=\\\"100\\\" y=\\\"120\\\" font-size=\\\"65\\\" text-anchor=\\\"middle\\\" fill=\\\"blue\\\">fff</text>\\r\\n</svg>\"');
+            expect(JSON.stringify(index.modifyingCircles(shapeConstructors))).toEqual('\"<svg version=\\\"1.1\\\"\\n    width=\\\"300\\\" height=\\\"200\\\"\\n    xmlns=\\\"http://www.w3.org/2000/svg\\\">\\n    <circle cx=\\\"100\\\" cy=\\\"100\\\" r=\\\"75\\\" fill=\\\"black\\\" />\\n    <text x=\\\"100\\\" y=\\\"120\\\" font-size=\\\"65\\\" text-anchor=\\\"middle\\\" fill=\\\"blue\\\">fff</text>\\n</svg>\"');
         })
     })
 })

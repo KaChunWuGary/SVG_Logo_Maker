@@ -1,8 +1,6 @@
 const index = require("./index.js");
 const shapeSelected = require('./lib/shapes.js');
 
-
-
 //my code is set up so that you have to input all 3 values to test instead of just 1 of the values. 
 describe("shape", () => {
     describe("triangle",() =>{

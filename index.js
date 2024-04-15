@@ -84,7 +84,7 @@ async function init() {
             message: `${questions[3]}` 
         },
     ]);
-    //uses use input to select for the class in shapes.js
+    //uses user input to select for the class in shapes.js
     const shape = answers.shape;
     const shapeType = new shapeSelected.Shapes(shape);    
     const shapeConstructors = new shapeType(answers.logo_text,answers.text_color,answers.shape_color);
@@ -104,7 +104,7 @@ async function init() {
     }
 }
 
-//init();
+init();
 
 module.exports = {
     modifyingCircles,

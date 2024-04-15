@@ -2,6 +2,7 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const shapeSelected = require('./lib/shapes.js');
 
+//prompts on the inquirer
 const questions = [
     "What are the 3 letters on your logo?",
     "What color are the letters?(color word or hexadecimal number is ok)",
@@ -9,27 +10,57 @@ const questions = [
     "What color is the shape?(color word or hexadecimal number is ok)",
 ];
 
+//next 3 functions are to modify the logo according to user inputs
 function modifyingCircles(shapeConstructors) {
-    const testing = fs.readFileSync( './examples/test.svg' , 'utf8')  
-    console.log(testing);        
+    const testing = fs.readFileSync( './examples/circle.svg' , 'utf8')     
     const modifiedData = testing
-    .replace('/<text.*?fill="white".*?>/',`<text fill="${shapeConstructors.text_color}">`)
-    .replace('/<circle.*?fill="green".*?>/',`<circle fill="${shapeConstructors.shape_color}">`)
+    .replace('<text x="100" y="120" font-size="65" text-anchor="middle" fill="white">',`<text x="100" y="120" font-size="65" text-anchor="middle" fill="${shapeConstructors.text_color}">`)
+    .replace('<circle cx="100" cy="100" r="75" fill="green" />',`<circle cx="100" cy="100" r="75" fill="${shapeConstructors.shape_color}" />`)
     .replace('SVG',`${shapeConstructors.text}`);
-    console.log(modifiedData);
-    fs.writeFile('./examples/logo.svg', modifiedData, 'utf8', (err) => {
-            
+    fs.writeFile('./examples/logo.svg', modifiedData, 'utf8', (err) => {     
         if (err) {
             console.error(err);
             return;
         }
             console.log(`Generated logo.svg!`);
-    })
-    
+    })  
+    return modifiedData;
 }
 
+function modifyingTriangles(shapeConstructors) {
+    const testing = fs.readFileSync( './examples/triangle.svg' , 'utf8')      
+    const modifiedData = testing
+    .replace('<text x="125" y="150" font-size="60" text-anchor="middle" fill="white">',`<text x="125" y="150" font-size="60" text-anchor="middle" fill="${shapeConstructors.text_color}">`)
+    .replace('<polygon points="123,10 227.8,190 20,190" style="fill:lime" />',`<polygon points="123,10 227.8,190 20,190" style="fill:${shapeConstructors.shape_color}" />`)
+    .replace('SVG',`${shapeConstructors.text}`);
+    fs.writeFile('./examples/logo.svg', modifiedData, 'utf8', (err) => {            
+        if (err) {
+            console.error(err);
+            return;
+        }
+            console.log(`Generated logo.svg!`);
+    })   
+    return modifiedData
+}
 
+function modifyingSquares(shapeConstructors) {
+    const testing = fs.readFileSync( './examples/square.svg' , 'utf8')       
+    const modifiedData = testing
+    .replace('<text x="150" y="140" font-size="130" text-anchor="middle" fill="white">',`<text x="150" y="140" font-size="130" text-anchor="middle" fill="${shapeConstructors.text_color}">`)
+    .replace('<rect width="100%" height="100%" fill="red" /> ',`<rect width="100%" height="100%" fill="${shapeConstructors.shape_color}" />`)
+    .replace('SVG',`${shapeConstructors.text}`);
+    fs.writeFile('./examples/logo.svg', modifiedData, 'utf8', (err) => {
+        if (err) {
+            console.error(err);
+            return;
+        }
+            console.log(`Generated logo.svg!`);
+    })  
+    return modifiedData;
+}
+//the first time that starts when index.js is run. 
 async function init() {
+    try {
     const answers = await inquirer.prompt([
         { 
             type: 'input', 
@@ -53,30 +84,36 @@ async function init() {
             message: `${questions[3]}` 
         },
     ]);
+    //uses use input to select for the class in shapes.js
     const shape = answers.shape;
     const shapeType = new shapeSelected.Shapes(shape);    
-    console.log(shapeType);
     const shapeConstructors = new shapeType(answers.logo_text,answers.text_color,answers.shape_color);
-    console.log(shapeConstructors);
-    modifyingCircles(shapeConstructors);
     
+    if(shape == 'Circle'){
+        modifyingCircles(shapeConstructors);
+    }
+    else if (shape == 'Triangle') {
+        modifyingTriangles(shapeConstructors);
+    }
+    else if (shape == 'Square'){    
+        modifyingSquares(shapeConstructors);
+    }
+    }
+    catch (err){
+        console.log(err);
+    }
 }
 
-init();
+//init();
 
+module.exports = {
+    modifyingCircles,
+    modifyingSquares,
+    modifyingTriangles,
+}
 
-
-
-    // //need to figure out how to readfile and then modify the file using it. 
-    // const shapeSelected = 'placehold'//insert correct file here;
-    // //null is the placeholder, since we need the 3 parameter of stringify
-    // //2 is the number of spaces when json stringifys
-    // // ex: const reviewString = JSON.stringify(newReview,null,2);
-    // const fileContent = JSON.stringify(shapeSelected);
-
-
-
-    // function modifyingCircles() {
+//not sure why the readfile in this case doesn't work. Going to save this to ask the instructor
+// function modifyingCircles() {
     //     const testing = fs.readFile( './examples/test.svg' , 'utf8',  (err, data) => {
     //         console.log(data);
     //         if (err) {

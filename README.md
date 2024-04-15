@@ -21,6 +21,8 @@ This application uses the command terminal to ask user for inputs to generate a 
           
 ## Installation <a id='l_installation'></a>
 use terminal to npm install. then run node index.js 
+Walkthrough video:
+[![Video](./lib/Walkthrough_video_SVG_gen.webm)]        
           
 ## Usage <a id='l_usage'></a>
 Follow user prompts to answer the questions. For the one question with the list, use arrow keys to scroll through the choices and enter to select. Open svg file with your default browser to see the product
@@ -33,7 +35,7 @@ All code and assets used are under the [![License: MPL 2.0](https://img.shields.
 none
           
 ## Testing <a id='l_testing'></a>
-none
+The logo.html has a preset logo set to the triangle shape as a control. 
           
 ## Questions <a id='l_questions'></a>
           
